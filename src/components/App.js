@@ -1,28 +1,21 @@
-import React, { useState, useEffect} from 'react';
-import '../App.css';
+import React, { useState } from 'react';
+import LinkedinLoginApiViewer from './LinkedinLoginApiViewer';
 
-export default function App( {login} ) {
+export default function App() {
 
-  const [data, setData] = useState(null);
+  const [login, setLogin] = useState("")
+  const [query, setQuery] = useState("")
 
-  useEffect(() => {
-    fetch(`https://api.github.com/users/${login}`)
-    .then((res) => { return res.json() })
-    .then((data) => setData(data))
-  }, [login]);
+  return (
+    <>
+      <input
+      type="text"
+      value={login}
+      onChange= {(event)=> setLogin(event.target.value)}
+      placeholder="Github login" />
+      <button onClick= {()=> {setQuery(login)} } >Search</button>
 
-
-  if(data) {
-    return (
-      <div className="App">
-        {/* {
-          Object.keys(data)
-          .map((value, index) => { return <button>{value}</button> })
-        } */}
-        {JSON.stringify(data, null, 3)}
-      </div>
-    );
-  }
-
-  return <p>No Profile Found!</p>
+    <LinkedinLoginApiViewer login={query} />
+    </>
+  )
 }
