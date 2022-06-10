@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import LinkedinLoginApiViewer from './LinkedinLoginApiViewer';
 
 export default function App() {
 
